@@ -11,7 +11,6 @@ public class KPICalc {
     private LocalDate currentNumberSetDate;
     float value2;
     float yield;
-    float vola;
     float MaxDD;
     float MaxDD_Final;
 	float value_test;
@@ -20,16 +19,27 @@ public class KPICalc {
 
     ArrayList<Float> YieldSetList = new ArrayList<>();
 
+  // Konstruktor der KPI Klasse, hier wird die entsprechende Numbersetlist übergeben
+    
     public KPICalc(NumberSetList numberSetList) {
 
         this.numberSetList = numberSetList.getNumberSetList();
     }
 
+    // Funktion um das TargetDate zu ermitteln
     public NumberSet getTargetDate(String startDate) {
+    	
+ // erstellung eines DateConverter (Hilfsklasse um Datum in das richtige Format zu bringen)	
+    	
         DateConverter dateConverter = new DateConverter();
         NumberSet targetNumberSet = new NumberSet();
+        
+  // umformatierung des StartDate durch die DateConverter Klassse   
+        
         targetDate = dateConverter.formatDate(startDate);
-
+        
+// Loop durch alle NumerSets in der NUmbersetlist + abruf des Datums (inkl. Vergleich aktuell ausgelesenes Datum vs Zieldatum)
+        
         for (NumberSet currentNumberSet : numberSetList) {
             currentNumberSetDate = currentNumberSet.getDate();
 
@@ -43,7 +53,8 @@ public class KPICalc {
         return targetNumberSet;
     }
 
-
+// Funktion um die x JahresRendite zu ermitteln
+    
     public Float calculateYoYProfit(String startDate, int index, int indicator) {
 
         DateConverter dateConverter = new DateConverter();
@@ -51,7 +62,9 @@ public class KPICalc {
         NumberSet yearAgoNumberSet = new NumberSet();
         LocalDate startNumberSetDate;
         targetDate = dateConverter.formatDate(startDate);
-
+        
+// Ermittlung der Stelle des TargetDates (start) in der NumberSetList
+        
         for (NumberSet currentNumberSet : numberSetList) { //
             currentNumberSetDate = currentNumberSet.getDate();
 
@@ -61,7 +74,7 @@ public class KPICalc {
                 break;
             }
         }
-
+// Ermittlung der Stelle des TargetDate von vor einem Jahr in der NUmberlist
         for (NumberSet currentNumberSet : numberSetList) {
             currentNumberSetDate = currentNumberSet.getDate();
             targetDate = startNumberSet.getDate();
@@ -109,12 +122,14 @@ public class KPICalc {
 
     }
 
-
+// Berechnung des Maximalen Verlustes (Einstellung des StartDates, des Index und der Betrachtungsperiode)
+    
     public float calculate_MaxDD(String startDate ,int index,int indicator) {
     	
     	
         MaxDD_Final = 0;
         value2 = 0;
+        
     	DateConverter dateConverter = new DateConverter();
     	targetDate = dateConverter.formatDate(startDate);
     	targetDate = targetDate.minusYears(indicator);
@@ -154,14 +169,6 @@ public class KPICalc {
         System.out.println("Das Zieldatum ist" + targetDate);
         return MaxDD_Final;
         
-    }
-
-
-    // tatsächliche Vola Berechnung (tiefergehende Recherche notwendig)
-    public float calculate_Vola() {
-
-
-        return vola;
     }
 
 

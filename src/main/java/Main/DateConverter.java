@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 
 public class DateConverter {
 
+// Funktion um das Datumsformat in eine für Java verarbeitbare Form umzuwandeln
+	
     public LocalDate formatDate(String cellValue) throws DateTimeException {
 
         try {

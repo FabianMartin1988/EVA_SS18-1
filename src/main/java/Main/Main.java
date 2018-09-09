@@ -25,7 +25,6 @@ public class Main {
         //Taskmaster übernimmt das Starten der Threads nach Config Vorgaben
         TaskMaster taskMaster = new TaskMaster(numberSetList, config);
         taskMaster.startThreads();
-
         
        // Testaufrufe Build_Finanzkennzahlen_FM 
        KPICalc Calc = new KPICalc(numberSetList);

@@ -11,6 +11,9 @@ public class WorkbookReader {
     private Workbook currentWorkbook;
     private Sheet currentSheet;
 
+    //Konstruktor dem das Workbook und die Indexnummer des Sheets übergeben wird
+    // Hier wird die Auswahl der ExcelRohdaten gesteuert
+    
     public WorkbookReader(Workbook workbook, int sheetNumber) {
 
         currentWorkbook = workbook;
@@ -19,6 +22,7 @@ public class WorkbookReader {
     }
 
 
+    // Hier wrd durch die geöffnete Excel Datei in dem entsprechendne Sheet iteriert und alle Daten in NumberSets geschrieben
     public NumberSetList getNumberSetList() {
 
         DataFormatter dataFormatter = new DataFormatter();
@@ -27,6 +31,9 @@ public class WorkbookReader {
         Iterator<Row> rowIterator = currentSheet.rowIterator();
 
         int rowCounter = 0;
+        
+        // Zwei geschachtelte Schleifen um durch die Zeilen und die Zellen zu iterieren
+        
         while (rowIterator.hasNext()) {
 
             Row currentRow = rowIterator.next();

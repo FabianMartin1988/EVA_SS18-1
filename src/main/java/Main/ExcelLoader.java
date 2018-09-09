@@ -13,10 +13,11 @@ public class ExcelLoader {
     Sheet sheet;
     String XLS_Filepath;
 
+    //Übergabe des Dateipfades an den Konstruktor
     public ExcelLoader(String XLS_Filepath) {
         this.XLS_Filepath = XLS_Filepath;
     }
-
+    // Christian
     public Workbook getWorkbook() throws IOException, InvalidFormatException {
         workbook = WorkbookFactory.create(new File(XLS_Filepath));
         System.out.println("ExcelLoader: Workbook has been created.");
